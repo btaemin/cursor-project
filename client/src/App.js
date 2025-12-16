@@ -4,7 +4,7 @@ import './App.css';
 import ChatRoom from './components/ChatRoom';
 import Tetris from './components/Tetris';
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:8080';
 const socket = io(SOCKET_URL);
 
 function App() {

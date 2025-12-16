@@ -28,12 +28,12 @@ COPY server/ ./server/
 COPY --from=react-build /app/client/build ./client/build
 
 # 포트 노출
-EXPOSE 5000
+EXPOSE 8080
 
 # 환경 변수 설정
 ENV NODE_ENV=production
-ENV PORT=5000
-ENV FRONTEND_URL=http://localhost:5000
+ENV PORT=8080
+ENV FRONTEND_URL=http://localhost:8080
 
 # 서버 시작
 CMD ["node", "server/index.js"]

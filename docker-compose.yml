@@ -7,11 +7,11 @@ services:
       dockerfile: Dockerfile
     container_name: chat-tetris-app
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
       - NODE_ENV=production
-      - PORT=5000
-      - FRONTEND_URL=http://localhost:5000
+      - PORT=8080
+      - FRONTEND_URL=http://localhost:8080
     restart: unless-stopped
     networks:
       - app-network

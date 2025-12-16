@@ -35,7 +35,7 @@ npm run client
 
 ## 사용 방법
 
-1. 서버 실행 후 브라우저에서 `http://localhost:3000` 접속
+1. 서버 실행 후 브라우저에서 `http://localhost:3001` 접속
 2. 사용자 이름 입력 후 채팅방 입장
 3. 채팅 중 상단의 "🎮 테트리스 플레이" 버튼 클릭하여 게임 시작
 
@@ -71,13 +71,13 @@ npm run docker:logs
 npm run docker:down
 ```
 
-4. 브라우저에서 `http://localhost:5000` 접속
+4. 브라우저에서 `http://localhost:8080` 접속
 
 ### 개발 환경 (Docker 사용)
 
 ```bash
 docker build -f Dockerfile.dev -t chat-tetris-dev .
-docker run -p 5000:5000 -p 3000:3000 -v $(pwd):/app chat-tetris-dev
+docker run -p 8080:8080 -p 3001:3001 -v $(pwd):/app chat-tetris-dev
 ```
 
 ## 기술 스택
