@@ -10,15 +10,29 @@ const server = http.createServer(app);
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3001';
 const PORT = process.env.PORT || 8080;
 
+// 개발 환경에서는 여러 origin 허용
+const allowedOrigins = process.env.NODE_ENV === 'production' 
+  ? [FRONTEND_URL]
+  : ['http://localhost:3000', 'http://localhost:3001', FRONTEND_URL];
+
 const io = socketIo(server, {
   cors: {
-    origin: FRONTEND_URL,
-    methods: ["GET", "POST"]
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
 app.use(cors({
-  origin: FRONTEND_URL
+  origin: function (origin, callback) {
+    // origin이 없는 경우 (같은 origin 요청) 허용
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 app.use(express.json());
 

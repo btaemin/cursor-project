@@ -5,7 +5,12 @@ import ChatRoom from './components/ChatRoom';
 import Tetris from './components/Tetris';
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:8080';
-const socket = io(SOCKET_URL);
+const socket = io(SOCKET_URL, {
+  transports: ['websocket', 'polling'],
+  reconnection: true,
+  reconnectionDelay: 1000,
+  reconnectionAttempts: 5
+});
 
 function App() {
   const [username, setUsername] = useState('');
