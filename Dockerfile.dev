@@ -1,0 +1,23 @@
+# 개발 환경용 Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# 루트 package.json 복사 및 설치
+COPY package*.json ./
+RUN npm install
+
+# 클라이언트 package.json 복사 및 설치
+COPY client/package*.json ./client/
+RUN cd client && npm install
+
+# 소스 코드 복사
+COPY . .
+
+# 포트 노출
+EXPOSE 5000
+EXPOSE 3000
+
+# 개발 서버 시작
+CMD ["npm", "run", "dev"]
+
